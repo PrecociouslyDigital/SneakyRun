@@ -1,0 +1,11 @@
+.nothit{
+  display:none;
+  position:relative;
+  z-axis:2;
+}
+.hit{
+    -ms-transform: rotate(12deg); /* IE 9 */
+    -webkit-transform: rotate(12deg); /* Chrome, Safari, Opera */
+    transform: rotate(12deg);
+    display:normal;
+}
