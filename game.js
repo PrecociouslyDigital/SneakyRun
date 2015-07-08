@@ -170,8 +170,8 @@ function update() {
 	});
 	game.physics.arcade.overlap(stairs,player,function(){alert('You win! You have successfully escaped from the research facility. Where will your future take you now that you have earned your freedom? You decide…\nPlay again?'); game.state.start(game.state.current);});
 	
-	game.physics.arcade.overlap(key1,player,function(x,y){killOnContact(x,y);key1value++;});
-	game.physics.arcade.overlap(key2,player,function(x,y){killOnContact(x,y);key2value++});
+	game.physics.arcade.overlap(key1,player,function(x,y){killOnContact(x,y);key1value=1;});
+	game.physics.arcade.overlap(key2,player,function(x,y){killOnContact(x,y);key2value=1;});
 	if(key1value==1){
 		game.physics.arcade.overlap(door1,player,killOnContact);
 	}
