@@ -24,8 +24,8 @@ function preload() {
 	game.world.setBounds(0,0,2000, 1500);
 	game.load.spritesheet('guard', 'assets/guard.png', 32, 32, 5);
 	game.load.spritesheet('player', 'assets/player.png', 32, 32, 5);
-	game.load.audio('music', 'assets/bgmusic.ogg');
-	game.load.audio('shot', 'assets/Shot.ogg');
+	//game.load.audio('music', 'assets/bgmusic.ogg');
+	//game.load.audio('shot', 'assets/shot.ogg');
 	game.load.image('wall', 'assets/wall.png');
 	game.load.image('bullet','assets/bullet.png');
 	game.load.image('stairs', 'assets/stairs.png');
@@ -45,13 +45,13 @@ function create() {
 	timerText = game.add.text(0, 0, "Time Left:", { font: "10px Times New Roman", fill: "#ff0044", align: "center" });
 	timerText.fixedToCamera = true;
 	timerText.cameraOffset = new Phaser.Point(10,10);
-	if(music != null && music != undefined)
+	/*if(music != null && music != undefined)
 	        music.stop();
 	music = game.add.audio('music');
 	music.loop = true;
-	music.play();
-	shot = game.add.audio("shot");
-	shot.allowMultiple = true;
+	music.play();*/
+	/*shot = game.add.audio("shot");
+	shot.allowMultiple = true;*/
 	game.add.tileSprite(0, 0, 2400, 1280, 'floor');
 	stairs = game.add.sprite(2256, 1248, 'stairs');
 	stairs.anchor.setTo(0.5,0);
