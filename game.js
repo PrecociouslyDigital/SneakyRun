@@ -16,13 +16,15 @@ var key2;
 var key2value = 0;
 var music;
 var shot;
+var timer;
+var timerText;
 function preload() {
 	game.load.image('floor', 'assets/floor.png');
 	game.load.tilemap('map', 'game.json', null, Phaser.Tilemap.TILED_JSON);
 	game.world.setBounds(0,0,2000, 1500);
 	game.load.spritesheet('guard', 'assets/guard.png', 32, 32, 5);
 	game.load.spritesheet('player', 'assets/player.png', 32, 32, 5);
-	game.load.audio('music', 'assets/bgmusic.ogg');
+	//game.load.audio('music', 'assets/bgmusic.ogg');
 	game.load.audio('shot', 'assets/shot.ogg');
 	game.load.image('wall', 'assets/wall.png');
 	game.load.image('bullet','assets/bullet.png');
@@ -34,6 +36,15 @@ function preload() {
 }
 
 function create() {
+	timer = game.time.create();
+	timer.add(15000, function(ay){
+		alert('Game over! Out of time!');
+		game.state.start(game.state.current);
+	}, this, 0);
+	timer.start();
+	timerText = game.add.text(0, 0, "Time Left:", { font: "10px Times New Roman", fill: "#ff0044", align: "center" });
+	timerText.fixedToCamera = true;
+	timerText.cameraOffset = new Phaser.Point(10,10);
 	music = game.add.audio('music');
 	music.loop = true;
 	music.play();
@@ -144,6 +155,8 @@ function update() {
 		alert('Game over! No power left. You touched the walls. Your stationary body has been found and recaptured by the guards. Try again?');
 		game.state.start(game.state.current);
 	});
+	timerText.text = "Time Left:" + Math.floor((timer.next - game.time.now)/1000);
+	console.log(timer.next);
 	game.physics.arcade.overlap(player,enemy,killOnContact2);
 	enemy.forEach(function(thing){thing.ai();});
 	game.physics.arcade.overlap(bullets,layer,killOnContact);
