@@ -1,0 +1,12 @@
+canvas {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+}
+
+#text {
+	position: relative;
+	float: right;
+	width: 200px;
+	margin-right: 10px;
+}
