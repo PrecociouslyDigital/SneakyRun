@@ -24,8 +24,8 @@ function preload() {
 	game.world.setBounds(0,0,2000, 1500);
 	game.load.spritesheet('guard', 'assets/guard.png', 32, 32, 5);
 	game.load.spritesheet('player', 'assets/player.png', 32, 32, 5);
-	//game.load.audio('music', 'assets/bgmusic.ogg');
-	game.load.audio('shot', 'assets/shot.ogg');
+	game.load.audio('music', 'assets/bgmusic.ogg');
+	game.load.audio('shot', 'assets/Shot.ogg');
 	game.load.image('wall', 'assets/wall.png');
 	game.load.image('bullet','assets/bullet.png');
 	game.load.image('stairs', 'assets/stairs.png');
@@ -37,7 +37,7 @@ function preload() {
 
 function create() {
 	timer = game.time.create();
-	timer.add(15000, function(ay){
+	timer.add(350000, function(ay){
 		alert('Game over! Out of time!');
 		game.state.start(game.state.current);
 	}, this, 0);
@@ -156,7 +156,6 @@ function update() {
 		game.state.start(game.state.current);
 	});
 	timerText.text = "Time Left:" + Math.floor((timer.next - game.time.now)/1000);
-	console.log(timer.next);
 	game.physics.arcade.overlap(player,enemy,killOnContact2);
 	enemy.forEach(function(thing){thing.ai();});
 	game.physics.arcade.overlap(bullets,layer,killOnContact);
