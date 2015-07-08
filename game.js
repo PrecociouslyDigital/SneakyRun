@@ -156,7 +156,6 @@ function update() {
 		game.state.start(game.state.current);
 	});
 	timerText.text = "Time Left:" + Math.floor((timer.next - game.time.now)/1000);
-	console.log(timer.next);
 	game.physics.arcade.overlap(player,enemy,killOnContact2);
 	enemy.forEach(function(thing){thing.ai();});
 	game.physics.arcade.overlap(bullets,layer,killOnContact);
