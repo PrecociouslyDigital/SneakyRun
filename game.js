@@ -25,7 +25,7 @@ function preload() {
 	game.load.spritesheet('guard', 'assets/guard.png', 32, 32, 5);
 	game.load.spritesheet('player', 'assets/player.png', 32, 32, 5);
 	game.load.audio('music', 'assets/bgmusic.ogg');
-	game.load.audio('shot', 'assets/shot.ogg');
+	game.load.audio('shot', 'assets/Shot.ogg');
 	game.load.image('wall', 'assets/wall.png');
 	game.load.image('bullet','assets/bullet.png');
 	game.load.image('stairs', 'assets/stairs.png');
