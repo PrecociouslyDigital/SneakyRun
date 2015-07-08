@@ -315,7 +315,7 @@ function createAI(x,y,angle,patrol,group){
 function fire() {
 
     if (game.time.now > this.nextFire && bullets.countDead() > 0){
-		shot.play();
+		//shot.play();
         this.nextFire = game.time.now + this.fireRate;
 
         var bullet = bullets.getFirstDead();
