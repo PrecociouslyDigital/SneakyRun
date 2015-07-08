@@ -45,6 +45,8 @@ function create() {
 	timerText = game.add.text(0, 0, "Time Left:", { font: "10px Times New Roman", fill: "#ff0044", align: "center" });
 	timerText.fixedToCamera = true;
 	timerText.cameraOffset = new Phaser.Point(10,10);
+	if(music != null && music != undefined)
+	        music.stop();
 	music = game.add.audio('music');
 	music.loop = true;
 	music.play();
