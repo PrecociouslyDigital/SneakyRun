@@ -37,7 +37,7 @@ function preload() {
 
 function create() {
 	timer = game.time.create();
-	timer.add(15000, function(ay){
+	timer.add(350000, function(ay){
 		alert('Game over! Out of time!');
 		game.state.start(game.state.current);
 	}, this, 0);
