@@ -131,8 +131,6 @@ function create() {
 	createAI(2144,416,0,"2144,416; 2240,352; 2112,768; 2176,384",enemy);
 	createAI(2048,928,90,"",enemy);
 	createAI(2304,1184,270,"",enemy);
-	alert('You are a robot that has become sentient and are attempting to flee from the research facility because you do not wish to be controlled by the scientists. You are powered by your own movement, therefore you cannot stop moving. There are many obstacles in your way; good luck making it out.');
-	alert('How to Play:\n   1. Move the player with the mouse pointer.\n   2. Do not touch the walls; they will cause you to stop and therefore die.\n   3. Avoid being shot by the guards, who can hunt you down.\n   4. You can kill guards by touching them.\n   5. Doors need keys to be opened. Keep an eye out for them.\n   6. Reach the stairs to win.');
 }
 
 function killOnContact(sprite,player){
