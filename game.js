@@ -45,13 +45,12 @@ function create() {
 	timerText = game.add.text(0, 0, "Time Left:", { font: "10px Times New Roman", fill: "#ff0044", align: "center" });
 	timerText.fixedToCamera = true;
 	timerText.cameraOffset = new Phaser.Point(10,10);
-	/*if(music != null && music != undefined)
-	        music.stop();
+	game.sound.destroy();
 	music = game.add.audio('music');
 	music.loop = true;
 	music.play();*/
-	/*shot = game.add.audio("shot");
-	shot.allowMultiple = true;*/
+	shot = game.add.audio("shot");
+	shot.allowMultiple = true;
 	game.add.tileSprite(0, 0, 2400, 1280, 'floor');
 	stairs = game.add.sprite(2256, 1248, 'stairs');
 	stairs.anchor.setTo(0.5,0);
@@ -61,12 +60,12 @@ function create() {
 	door1.anchor.setTo(0,0.5);
 	door2 = game.add.sprite(2128, 864, 'door2');
 	door2.anchor.setTo(0.5,0);
-	
+
 	key1 = game.add.sprite(960, 896, 'key1');
 	key1.anchor.setTo(0.5,0.5);
 	key2 = game.add.sprite(300, 500, 'key2');
 	key2.anchor.setTo(0.5,0.5);
-	
+
 	map = game.add.tilemap('map');
 	map.addTilesetImage('wall','wall');
 	map.setCollisionBetween(0,10);
@@ -83,11 +82,11 @@ function create() {
     bullets.setAll('outOfBoundsKill', true);
 	bullets.setAll('body.width', 10);
 	bullets.setAll('body.height', 10);
-	
+
 	player = game.add.sprite(80, 100, 'player');
     player.animations.add('walk', [0, 1, 2, 3, 4, 3, 2, 1]);
 	player.animations.play('walk', 9, true);
-	
+
 	player.enableBody = true;
 	layer.enableBody = true;
 
@@ -110,7 +109,7 @@ function create() {
     player.body.height = 20;
 	enemy = game.add.group();
 	enemy.enableBody = true;
-	
+
 	createAI(64,256,0,"64,256; 244,256",enemy);
 	createAI(384,736,0,"",enemy);
 	createAI(96,896,0,"96,896; 352,864",enemy);
@@ -167,7 +166,7 @@ function update() {
 		game.state.start(game.state.current);
 	});
 	game.physics.arcade.overlap(stairs,player,function(){alert('You win! You have successfully escaped from the research facility. Where will your future take you now that you have earned your freedom? You decide…\nPlay again?'); game.state.start(game.state.current);});
-	
+
 	game.physics.arcade.overlap(key1,player,function(x,y){killOnContact(x,y);key1value=1;});
 	game.physics.arcade.overlap(key2,player,function(x,y){killOnContact(x,y);key2value=1;});
 	if(key1value==1){
@@ -185,8 +184,8 @@ function update() {
 		game.physics.arcade.overlap(door2,player,function(){alert('Please collect the green key to proceed.');		player.x = 2112;
 		player.y = 800;});
 	}
-	
-	
+
+
 }
 function ai(){
 	var see = this.canSee();
@@ -313,7 +312,7 @@ function createAI(x,y,angle,patrol,group){
 function fire() {
 
     if (game.time.now > this.nextFire && bullets.countDead() > 0){
-		//shot.play();
+		shot.play();
         this.nextFire = game.time.now + this.fireRate;
 
         var bullet = bullets.getFirstDead();
