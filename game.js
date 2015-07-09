@@ -48,7 +48,7 @@ function create() {
 	game.sound.destroy();
 	music = game.add.audio('music');
 	music.loop = true;
-	music.play();*/
+	music.play();
 	shot = game.add.audio("shot");
 	shot.allowMultiple = true;
 	game.add.tileSprite(0, 0, 2400, 1280, 'floor');
