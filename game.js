@@ -1,4 +1,5 @@
 var game = new Phaser.Game(1200, 700, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var play;
 var player;
 var enemy;
 var map;
@@ -18,7 +19,14 @@ var music;
 var shot;
 var timer;
 var timerText;
+var timerValue
+var startScreen;
+//var instructionsBox;
+//var instructions;
 function preload() {
+	game.load.image('instructionsBox', 'assets/dude.png');
+	game.load.image('instructions', 'assets/instructions.png');
+	game.load.image('startScreen', 'assets/startScreen.png');
 	game.load.image('floor', 'assets/floor.png');
 	game.load.tilemap('map', 'game.json', null, Phaser.Tilemap.TILED_JSON);
 	game.world.setBounds(0,0,2000, 1500);
@@ -36,15 +44,14 @@ function preload() {
 }
 
 function create() {
+
 	timer = game.time.create();
-	timer.add(350000, function(ay){
+	timer.add(350000, function(){
 		alert('Game over! Out of time!');
 		game.state.start(game.state.current);
 	}, this, 0);
 	timer.start();
-	timerText = game.add.text(0, 0, "Time Left:", { font: "10px Times New Roman", fill: "#ff0044", align: "center" });
-	timerText.fixedToCamera = true;
-	timerText.cameraOffset = new Phaser.Point(10,10);
+	
 	game.sound.destroy();
 	music = game.add.audio('music');
 	music.loop = true;
@@ -130,6 +137,27 @@ function create() {
 	createAI(2144,416,0,"2144,416; 2240,352; 2112,768; 2176,384",enemy);
 	createAI(2048,928,90,"",enemy);
 	createAI(2304,1184,270,"",enemy);
+	game.paused = true;
+	startScreen = game.add.sprite(0, 0, 'startScreen');
+	startScreen.inputEnabled=true
+	game.inputEnabled = true;
+	//instructions = game.add.sprite(317,325,'instructions');
+	//instructions.inputEnabled = true;
+    game.input.onDown.add(startGame, this);
+	
+	//instructions.events.onInputDown.add(showBox,this);
+
+	
+}
+
+/*function showBox(){
+		game.add.sprite(350,400,'instructionBox');
+	}*/
+
+function startGame (){
+	game.paused=false;
+	startScreen.visible = false;
+	//instructions.visible=false
 }
 
 function killOnContact(sprite,player){
@@ -145,7 +173,11 @@ function killBoth(a,b){
 function fifteenpx(x,y){
 	return [{x:x,y:y},{x:x+150,y:y}];
 }
+
 function update() {
+	//timerText = game.add.text(10, 10, "Time Left:" + timerValue, { font: "50px Times New Roman", fill: "#ff0044", align: "center" });
+	//timerValue = Math.floor((timer.next - game.time.now)/1000);
+	//timerValue = Math.floor(timer.ms/1000);
 	if(player.x != game.input.mousePointer.x||player.y != game.input.mousePointer.y){
 		player.angle = game.math.radToDeg(game.physics.arcade.moveToPointer(player, 210, game.input.mousePointer)+90);
 	}
@@ -154,7 +186,7 @@ function update() {
 		alert('Game over! No power left. You touched the walls. Your stationary body has been found and recaptured by the guards. Try again?');
 		game.state.start(game.state.current);
 	});
-	timerText.text = "Time Left:" + Math.floor((timer.next - game.time.now)/1000);
+
 	game.physics.arcade.overlap(player,enemy,killOnContact2);
 	enemy.forEach(function(thing){thing.ai();});
 	game.physics.arcade.overlap(bullets,layer,killOnContact);
@@ -268,7 +300,7 @@ function genPath(input){
 	return toSender;
 }
 function canSee(){
-	var dist = 400;
+	var dist = 300;
 	if(!this.alive)
 		return false;
 	if(game.physics.arcade.distanceBetween(this,player) > dist)
