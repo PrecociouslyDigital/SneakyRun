@@ -23,6 +23,8 @@ var timerValue
 var startScreen;
 //var instructionsBox;
 //var instructions;
+//var livesNum=2;
+//var livesText;
 function preload() {
 	//game.load.image('instructionsBox', 'assets/dude.png');
 	game.load.image('instructions', 'assets/instructions.png');
@@ -135,7 +137,7 @@ function create() {
 	createAI(1664,96,179,"",enemy);
 	createAI(2080,128,0,"2080,128; 2272,128; 2272,800; 2080,800",enemy);
 	createAI(2144,416,0,"2144,416; 2240,352; 2112,768; 2176,384",enemy);
-	createAI(2048,928,90,"",enemy);
+	createAI(2048,1000,90,"",enemy);
 	createAI(2304,1184,270,"",enemy);
 	game.paused = true;
 	startScreen = game.add.sprite(0, 0, 'startScreen');
@@ -175,14 +177,16 @@ function fifteenpx(x,y){
 }
 
 function update() {
+
 	//timerText = game.add.text(10, 10, "Time Left:" + timerValue, { font: "50px Times New Roman", fill: "#ff0044", align: "center" });
 	//timerValue = Math.floor((timer.next - game.time.now)/1000);
 	//timerValue = Math.floor(timer.ms/1000);
 	if(player.x != game.input.mousePointer.x||player.y != game.input.mousePointer.y){
-		player.angle = game.math.radToDeg(game.physics.arcade.moveToPointer(player, 210, game.input.mousePointer)+90);
+		player.angle = game.math.radToDeg(game.physics.arcade.moveToPointer(player, 260, game.input.mousePointer)+90);
 	}
 	game.physics.arcade.overlap(player,layer,function(a,b){
 		killOnContact(a,b);
+		//livesNum--;
 		alert('Game over! No power left. You touched the walls. Your stationary body has been found and recaptured by the guards. Try again?');
 		game.state.start(game.state.current);
 	});
@@ -197,7 +201,7 @@ function update() {
 		alert('Game over! The guards have shot and captured you. Try again?');
 		game.state.start(game.state.current);
 	});
-	game.physics.arcade.overlap(stairs,player,function(){alert('You win! You have successfully escaped from the research facility. Where will your future take you now that you have earned your freedom? You decide…\nPlay again?'); game.state.start(game.state.current);});
+	game.physics.arcade.overlap(stairs,player,function(){alert('You win! You have successfully escaped from the research facility. Where will your future take you now that you have earned your freedom? You decide… \n Play again?'); game.state.start(game.state.current);});
 
 	game.physics.arcade.overlap(key1,player,function(x,y){killOnContact(x,y);key1value=1;});
 	game.physics.arcade.overlap(key2,player,function(x,y){killOnContact(x,y);key2value=1;});
@@ -300,7 +304,7 @@ function genPath(input){
 	return toSender;
 }
 function canSee(){
-	var dist = 300;
+	var dist = 250;
 	if(!this.alive)
 		return false;
 	if(game.physics.arcade.distanceBetween(this,player) > dist)
