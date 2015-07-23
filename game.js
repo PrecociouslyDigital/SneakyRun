@@ -24,9 +24,9 @@ var startScreen;
 //var instructionsBox;
 //var instructions;
 function preload() {
-	game.load.image('instructionsBox', 'assets/dude.png');
+	//game.load.image('instructionsBox', 'assets/dude.png');
 	game.load.image('instructions', 'assets/instructions.png');
-	game.load.image('startScreen', 'assets/startScreen.png');
+	game.load.image('startScreen', 'assets/startscreen.png');
 	game.load.image('floor', 'assets/floor.png');
 	game.load.tilemap('map', 'game.json', null, Phaser.Tilemap.TILED_JSON);
 	game.world.setBounds(0,0,2000, 1500);
