@@ -21,12 +21,14 @@ var timer;
 var timerText;
 var timerValue
 var startScreen;
-//var instructionsBox;
-//var instructions;
+var instructionsBox;
+var instructions;
 //var livesNum=2;
 //var livesText;
+var instructionsDown;
 function preload() {
-	//game.load.image('instructionsBox', 'assets/dude.png');
+	//game.load.image('instructionsDown', 'assets/instructionsDown.png');
+	game.load.image('instructionsBox', 'assets/dude.png');
 	game.load.image('instructions', 'assets/instructions.png');
 	game.load.image('startScreen', 'assets/startscreen.png');
 	game.load.image('floor', 'assets/floor.png');
@@ -46,7 +48,7 @@ function preload() {
 }
 
 function create() {
-
+game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 	timer = game.time.create();
 	timer.add(350000, function(){
 		alert('Game over! Out of time!');
@@ -80,6 +82,7 @@ function create() {
 	map.setCollisionBetween(0,10);
 	layer = map.createLayer('wall');
 	layer.resizeWorld();
+	
 
 
 	bullets = game.add.group();
@@ -139,6 +142,7 @@ function create() {
 	createAI(2144,416,0,"2144,416; 2240,352; 2112,768; 2176,384",enemy);
 	createAI(2048,1000,90,"",enemy);
 	createAI(2304,1184,270,"",enemy);
+
 	game.paused = true;
 	startScreen = game.add.sprite(0, 0, 'startScreen');
 	startScreen.inputEnabled=true
@@ -149,7 +153,7 @@ function create() {
 	
 	//instructions.events.onInputDown.add(showBox,this);
 
-	
+		//game.add.image(0,700,'instructionsDown')
 }
 
 /*function showBox(){
@@ -158,8 +162,8 @@ function create() {
 
 function startGame (){
 	game.paused=false;
-	startScreen.visible = false;
-	//instructions.visible=false
+	startScreen.destroy();
+	instructions.destroy();
 }
 
 function killOnContact(sprite,player){

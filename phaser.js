@@ -29112,10 +29112,10 @@ Phaser.Pointer.prototype = {
         this.withinGame = this.game.scale.bounds.contains(this.pageX, this.pageY);
 
         //  If the game is paused we don't process any target objects or callbacks
-        if (this.game.paused)
+       /* if (this.game.paused)
         {
             return this;
-        }
+        }*/
 
         var i = this.game.input.moveCallbacks.length;
 
