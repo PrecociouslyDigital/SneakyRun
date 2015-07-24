@@ -48,7 +48,11 @@ function preload() {
 }
 
 function create() {
-game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+	game.scale.maxWidth = 1200;
+    game.scale.maxHeight = 700;
+	game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.setScreenSize();
+
 	timer = game.time.create();
 	timer.add(350000, function(){
 		alert('Game over! Out of time!');
