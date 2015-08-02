@@ -363,7 +363,7 @@ function fire() {
 		var dist = game.physics.arcade.velocityFromAngle(this.angle - 90, 35);
         bullet.reset(dist.x + this.x,dist.y + this.y);
 
-        game.physics.arcade.moveToXY(bullet,player.x - 40 + 80 * Math.random(),player.y - 40 + 80 * Math.random(), 500);
+        game.physics.arcade.moveToXY(bullet,player.x - 40 + 80 * Math.random(),player.y - 40 + 80 * Math.random(), 455);
     }
 
 }
