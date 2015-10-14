@@ -168,7 +168,6 @@ function create() {
 function startGame (){
 	game.paused=false;
 	startScreen.destroy();
-	instructions.destroy();
 }
 
 function killOnContact(sprite,player){
