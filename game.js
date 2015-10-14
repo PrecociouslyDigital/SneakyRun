@@ -23,6 +23,7 @@ var timerValue
 var startScreen;
 var instructionsBox;
 var instructions;
+var triesSoFar = 0;
 //var livesNum=2;
 //var livesText;
 var instructionsDown;
@@ -195,6 +196,7 @@ function update() {
 	game.physics.arcade.overlap(player,layer,function(a,b){
 		killOnContact(a,b);
 		//livesNum--;
+		document.getElementById("tryCount").text = "Tries : " + ++triesSoFar;
 		alert('Game over! No power left. You touched the walls. Your stationary body has been found and recaptured by the guards. Try again?');
 		game.state.start(game.state.current);
 	});
@@ -207,9 +209,10 @@ function update() {
 	game.physics.arcade.overlap(player,bullets,function(a,b){
 		killOnContact(a,b);
 		alert('Game over! The guards have shot and captured you. Try again?');
+		document.getElementById("tryCount").text = "Tries : " + ++triesSoFar;
 		game.state.start(game.state.current);
 	});
-	game.physics.arcade.overlap(stairs,player,function(){alert('You win! You have successfully escaped from the research facility. Where will your future take you now that you have earned your freedom? You decide… \n Play again?'); game.state.start(game.state.current);});
+	game.physics.arcade.overlap(stairs,player,function(){alert('You win! You have successfully escaped from the research facility. Where will your future take you now that you have earned your freedom? You decide… \n Play again?\nTries used:' + triesSoFar); game.state.start(game.state.current);});
 
 	game.physics.arcade.overlap(key1,player,function(x,y){killOnContact(x,y);key1value=1;});
 	game.physics.arcade.overlap(key2,player,function(x,y){killOnContact(x,y);key2value=1;});
